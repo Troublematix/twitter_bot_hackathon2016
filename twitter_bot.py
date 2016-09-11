@@ -18,12 +18,14 @@ def main():
     while(True):
         search = api.search("#motivaSparta")
         for x in range(0, len(search)):
+            print search[x].text
             try:
                 api.update_status("@{} This is SPARTA, GRRRR!!!!!!!!!!".format(search[x].user.screen_name),
-                                  search[x].user.id)
+                                  search[x].id)
+
             except tweepy.error.TweepError as e:
-                # print(repr(e))
-                next
+                print(repr(e))
+                continue
         sleep(CHECK_INTERVAL)
 
     # search = api.search("#xmotivaSparta")
